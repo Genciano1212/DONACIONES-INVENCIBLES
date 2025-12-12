@@ -114,8 +114,13 @@ export const DonationTable: React.FC<DonationTableProps> = ({ players, goalDaily
       );
   };
 
-  // Clase común para headers
-  const thBase = "cursor-help relative group select-none";
+  // Clase común para headers. 
+  // NOTA: Eliminado 'relative' para evitar conflicto con 'sticky'. Sticky ya crea contexto para tooltips.
+  const thBase = "cursor-help group select-none";
+  
+  // Ajuste de sticky top para compensar el header fijo de la App (aprox 57px mobile, 60px desktop)
+  const stickyTop = "top-[57px] md:top-[60px]";
+  const stickyHeaderClass = `sticky ${stickyTop} bg-slate-100 z-40`;
 
   return (
     <div className="space-y-2 md:space-y-4">
@@ -135,69 +140,70 @@ export const DonationTable: React.FC<DonationTableProps> = ({ players, goalDaily
         />
       </div>
 
-      <div className="bg-white rounded-lg md:rounded-2xl shadow-lg border border-gray-300 overflow-hidden">
-        <div className="overflow-x-auto">
+      <div className="bg-white rounded-lg md:rounded-2xl shadow-lg border border-gray-300">
+        <div className="">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-slate-100 border-b-2 md:border-b-4 border-slate-300 text-slate-700">
+            <thead className="bg-slate-100 border-b-2 md:border-b-4 border-slate-400 text-slate-700">
               <tr>
-                {/* NOMBRE */}
-                <th className={`sticky left-0 z-30 bg-slate-100 px-1 py-2 md:px-6 md:py-4 font-bold text-[9px] md:text-base uppercase border-r border-slate-300 shadow-[1px_0_3px_-1px_rgba(0,0,0,0.1)] w-[70px] md:w-auto text-left ${thBase}`}
+                {/* NOMBRE - Sticky Left + Sticky Top - z-50 (FIXED from z-45) para asegurar que tape las celdas del body (z-10) */}
+                <th className={`sticky left-0 ${stickyTop} z-50 bg-slate-100 px-1 py-2 md:px-6 md:py-4 font-bold text-[9px] md:text-base uppercase border-r border-slate-400 shadow-[1px_0_3px_-1px_rgba(0,0,0,0.1)] w-[70px] md:w-auto text-left ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'name')}>
                   NOMBRE
                   {renderTooltip('name')}
                 </th>
 
                 {/* TENIA (Hidden Mobile) */}
-                <th className={`hidden sm:table-cell px-2 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center text-slate-500 border-r border-slate-300 whitespace-nowrap ${thBase}`}
+                <th className={`hidden sm:table-cell ${stickyHeaderClass} px-2 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center text-slate-500 border-r border-slate-400 whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'tenia')}>
                     TENIA
                     {renderTooltip('tenia')}
                 </th>
 
                 {/* TIENE (Hidden Mobile) */}
-                <th className={`hidden sm:table-cell px-2 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center text-blue-700 border-r border-slate-300 bg-blue-50 whitespace-nowrap ${thBase}`}
+                <th className={`hidden sm:table-cell ${stickyHeaderClass} px-2 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center text-blue-700 border-r border-slate-400 bg-blue-50 whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'tiene')}>
                     TIENE
                     {renderTooltip('tiene')}
                 </th>
                 
                 {/* SEMANAL */}
-                <th className={`px-1 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-300 whitespace-nowrap ${thBase}`}
+                <th className={`${stickyHeaderClass} px-1 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-400 whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'semanal')}>
                     SEMANAL
                     {renderTooltip('semanal')}
                 </th>
                 
                 {/* DIARIO (Hidden Mobile) */}
-                <th className={`hidden md:table-cell px-2 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-300 whitespace-nowrap ${thBase}`}
+                <th className={`hidden md:table-cell ${stickyHeaderClass} px-2 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-400 whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'diario')}>
                     DIARIO
                     {renderTooltip('diario')}
                 </th>
                 
                 {/* % META */}
-                <th className={`px-1 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-300 whitespace-nowrap ${thBase}`}
+                <th className={`${stickyHeaderClass} px-1 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-400 whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'meta')}>
                     %
                     {renderTooltip('meta')}
                 </th>
                 
                 {/* RESERVA */}
-                <th className={`px-1 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-300 whitespace-nowrap ${thBase}`}
+                <th className={`${stickyHeaderClass} px-1 py-2 md:px-4 md:py-4 font-bold text-[9px] md:text-base uppercase text-center border-r border-slate-400 whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'reserva')}>
                     RESERVA
                     {renderTooltip('reserva')}
                 </th>
                 
                 {/* TOTAL */}
-                <th className={`px-1 py-2 md:px-6 md:py-4 font-bold text-[9px] md:text-base uppercase text-right whitespace-nowrap ${thBase}`}
+                <th className={`${stickyHeaderClass} px-1 py-2 md:px-6 md:py-4 font-bold text-[9px] md:text-base uppercase text-right whitespace-nowrap ${thBase}`}
                     onClick={(e) => handleHeaderClick(e, 'total')}>
                     TOTAL
                      {renderTooltip('total')}
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            {/* Darker Dividers: divide-slate-400 */}
+            <tbody className="divide-y divide-slate-400">
               {sortedPlayers.length === 0 && (
                   <tr><td colSpan={8} className="text-center py-6 text-xs md:text-xl text-gray-400 font-bold">
                     {searchTerm ? 'No encontrado' : 'Sin datos'}
@@ -214,26 +220,28 @@ export const DonationTable: React.FC<DonationTableProps> = ({ players, goalDaily
                 let rowBg = "bg-white";
                 let rowHover = "hover:bg-blue-50";
                 let stickyBg = "bg-white group-hover:bg-blue-50";
-                let borderClass = "border-gray-200";
+                
+                // Darker border: border-slate-400
+                let borderClass = "border-slate-400";
                 let nameTextClass = "text-indigo-900";
 
                 if (isNew) {
                     rowBg = "bg-emerald-50";
                     rowHover = "";
                     stickyBg = "bg-emerald-50";
-                    borderClass = "border-emerald-200";
+                    borderClass = "border-emerald-300";
                     nameTextClass = "text-emerald-900";
                 } else if (isLeaving) {
                     rowBg = "bg-rose-50";
                     rowHover = "";
                     stickyBg = "bg-rose-50";
-                    borderClass = "border-rose-200";
+                    borderClass = "border-rose-300";
                     nameTextClass = "text-rose-900";
                 }
 
                 return (
-                  <tr key={player.name} className={`group transition-colors ${rowBg} ${rowHover} ${isNew ? 'border-b border-emerald-200' : ''}`}>
-                    {/* Sticky Nombre */}
+                  <tr key={player.name} className={`group transition-colors ${rowBg} ${rowHover} ${isNew ? 'border-b border-emerald-300' : ''}`}>
+                    {/* Sticky Nombre - z-10 es suficiente para el body, el header lo tapa con z-50 */}
                     <td className={`sticky left-0 z-10 px-1 py-1.5 md:px-6 md:py-5 border-r ${borderClass} ${stickyBg} shadow-[1px_0_3px_-1px_rgba(0,0,0,0.1)]`}>
                       <div className={`font-bold text-[11px] md:text-lg truncate max-w-[85px] md:max-w-none leading-tight ${nameTextClass}`}>
                         {player.name}
@@ -246,7 +254,7 @@ export const DonationTable: React.FC<DonationTableProps> = ({ players, goalDaily
                     <td className={`hidden sm:table-cell px-2 py-2 md:px-4 md:py-5 text-center text-gray-400 font-mono text-xs md:text-lg border-r ${borderClass}`}>
                       {isLeaving ? '-' : formatNumber(player.previous)}
                     </td>
-                    <td className={`hidden sm:table-cell px-2 py-2 md:px-4 md:py-5 text-center text-blue-600 font-mono font-bold text-xs md:text-xl border-r ${isNew ? 'border-emerald-200' : 'border-blue-100'}`}>
+                    <td className={`hidden sm:table-cell px-2 py-2 md:px-4 md:py-5 text-center text-blue-600 font-mono font-bold text-xs md:text-xl border-r ${isNew ? 'border-emerald-300' : 'border-blue-200'}`}>
                       {isLeaving ? '-' : formatNumber(player.current)}
                     </td>
                     
@@ -296,6 +304,7 @@ export const DonationTable: React.FC<DonationTableProps> = ({ players, goalDaily
             </tbody>
             <tfoot className="bg-slate-800 text-white text-[10px] md:text-sm uppercase font-bold border-t-2 md:border-t-4 border-slate-600 relative z-20">
               <tr>
+                 {/* Footer sticky left to match body */}
                  <td className="sticky left-0 bg-slate-800 px-1 py-2 md:px-6 md:py-5 text-[10px] md:text-base shadow-[2px_0_5px_-2px_rgba(0,0,0,0.5)]">TOT</td>
                  <td className="hidden sm:table-cell border-r border-slate-600"></td>
                  <td className="hidden sm:table-cell border-r border-slate-600"></td>

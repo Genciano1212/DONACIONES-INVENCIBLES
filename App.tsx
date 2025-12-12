@@ -26,6 +26,13 @@ function App() {
     setData(loaded);
   }, []);
 
+  // Guardar datos automáticamente cada vez que cambian
+  useEffect(() => {
+    if (data) {
+      saveData(data);
+    }
+  }, [data]);
+
   const getWeekStart = (): number => {
     const d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -121,7 +128,7 @@ function App() {
     };
 
     setData(newData);
-    saveData(newData);
+    // saveData se llama automáticamente por el useEffect
     setModalMode(null);
   };
 
@@ -129,7 +136,7 @@ function App() {
     if (!data) return;
     const newData = { ...data, goalDaily: newGoal };
     setData(newData);
-    saveData(newData);
+    // saveData se llama automáticamente por el useEffect
     setModalMode(null);
   };
 
@@ -161,7 +168,7 @@ function App() {
          lastUpdate: Date.now()
      };
      setData(newData);
-     saveData(newData);
+     // saveData se llama automáticamente por el useEffect
   };
 
   // Manejadores de autenticación
@@ -185,8 +192,8 @@ function App() {
 
   return (
     <div className="min-h-screen pb-20 relative bg-slate-50">
-      {/* Header Compacto */}
-      <div className="bg-white border-b border-gray-300 shadow-sm sticky top-0 z-30">
+      {/* Header Compacto Fixed */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-300 shadow-sm">
         <div className="max-w-7xl mx-auto px-2 py-2 relative flex justify-between items-center">
             
             {/* Main Controls - Ajustado para móvil */}
@@ -216,7 +223,7 @@ function App() {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-1 md:px-4 lg:px-8 py-2 md:py-8 space-y-3 md:space-y-6">
+      <main className="max-w-7xl mx-auto px-1 md:px-4 lg:px-8 pt-20 pb-8 space-y-3 md:space-y-6">
         
         {/* Legend - Super Compact */}
         <div className="flex gap-3 justify-center text-[10px] md:text-sm font-semibold text-gray-700 bg-white py-1 px-3 rounded-full border border-gray-200 shadow-sm w-fit mx-auto">
