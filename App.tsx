@@ -6,7 +6,6 @@ import { ManualEntry } from './components/ManualEntry';
 import { Settings } from './components/Settings';
 import { Modal } from './components/Modal';
 import { Button } from './components/Button';
-import { AIAnalysis } from './components/AIAnalysis';
 import { HelpGuide } from './components/HelpGuide';
 import { PasswordPrompt } from './components/PasswordPrompt';
 
@@ -15,12 +14,11 @@ const EditIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" 
 const SettingsIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 const RefreshIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>;
 const SaveIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" /></svg>;
-const AIIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
 const HelpIcon = () => <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 
 function App() {
   const [data, setData] = useState<AppData | null>(null);
-  const [modalMode, setModalMode] = useState<'manual' | 'settings' | 'ai' | 'help' | 'auth' | null>(null);
+  const [modalMode, setModalMode] = useState<'manual' | 'settings' | 'help' | 'auth' | null>(null);
   const [pendingAction, setPendingAction] = useState<'manual' | 'reset' | null>(null);
 
   useEffect(() => {
@@ -193,7 +191,7 @@ function App() {
             
             {/* Main Controls - Ajustado para móvil */}
             <div className="flex items-center gap-1 md:gap-3 flex-1 overflow-x-auto no-scrollbar">
-                <Button variant="primary" icon={<EditIcon />} onClick={() => initiateAction('manual')} className="px-2 md:px-5">
+                <Button variant="primary" icon={<EditIcon />} onClick={() => setModalMode('manual')} className="px-2 md:px-5">
                     <span className="hidden sm:inline">Ingresar</span>
                 </Button>
                 <Button variant="secondary" icon={<SettingsIcon />} onClick={() => setModalMode('settings')} className="px-2 md:px-5">
@@ -204,13 +202,6 @@ function App() {
                 </Button>
                 <Button variant="secondary" icon={<SaveIcon />} onClick={() => exportDataToJson(data)} className="px-2 md:px-5">
                     <span className="hidden sm:inline">Exportar</span>
-                </Button>
-                <Button 
-                    className="bg-purple-600 hover:bg-purple-700 text-white shadow-purple-200 focus:ring-purple-500 px-2 md:px-5" 
-                    icon={<AIIcon />} 
-                    onClick={() => setModalMode('ai')}
-                >
-                    <span className="hidden sm:inline">IA</span>
                 </Button>
             </div>
 
@@ -272,14 +263,6 @@ function App() {
             onSave={updateGoal} 
             onCancel={() => setModalMode(null)} 
         />
-      </Modal>
-
-      <Modal 
-        isOpen={modalMode === 'ai'} 
-        onClose={() => setModalMode(null)} 
-        title="Análisis Gemini"
-      >
-        <AIAnalysis data={data} onClose={() => setModalMode(null)} />
       </Modal>
 
       <Modal 
