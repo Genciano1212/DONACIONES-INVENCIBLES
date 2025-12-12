@@ -7,17 +7,21 @@ import { Settings } from './components/Settings';
 import { Modal } from './components/Modal';
 import { Button } from './components/Button';
 import { AIAnalysis } from './components/AIAnalysis';
+import { HelpGuide } from './components/HelpGuide';
+import { PasswordPrompt } from './components/PasswordPrompt';
 
 // Icons
-const EditIcon = () => <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>;
-const SettingsIcon = () => <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
-const RefreshIcon = () => <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>;
-const SaveIcon = () => <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" /></svg>;
-const AIIcon = () => <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
+const EditIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>;
+const SettingsIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
+const RefreshIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>;
+const SaveIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" /></svg>;
+const AIIcon = () => <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
+const HelpIcon = () => <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 
 function App() {
   const [data, setData] = useState<AppData | null>(null);
-  const [modalMode, setModalMode] = useState<'manual' | 'settings' | 'ai' | null>(null);
+  const [modalMode, setModalMode] = useState<'manual' | 'settings' | 'ai' | 'help' | 'auth' | null>(null);
+  const [pendingAction, setPendingAction] = useState<'manual' | 'reset' | null>(null);
 
   useEffect(() => {
     const loaded = loadData();
@@ -36,13 +40,21 @@ function App() {
   const handleStartNewWeek = async (manualData: Record<string, number>) => {
     if (!data) return;
 
-    // 1. Process Logic: Close previous week
     const weeklyGoal = data.goalDaily * 7;
     const updatedPlayers = { ...data.players };
 
-    // First, finalize stats for existing players
+    // 0. Resetear estado "isLeaving" de la actualización anterior
+    // Si alguien estaba "saliendo" la vez pasada, ahora ya está oficialmente fuera (oculto)
+    Object.values(updatedPlayers).forEach((p: Player) => {
+        if (p.isLeaving) {
+            p.isLeaving = false;
+        }
+    });
+
+    // 1. Process Logic (Calcular metas y bancos para jugadores existentes)
     Object.keys(updatedPlayers).forEach(key => {
         const p = updatedPlayers[key];
+        // Solo procesamos finanzas si no está ausente
         if(p.absent) return;
 
         const donation = p.weeklyTotal || 0;
@@ -52,21 +64,26 @@ function App() {
             const deficit = weeklyGoal - donation;
             const deduction = Math.min(deficit, p.accumulatedExcess);
             p.accumulatedExcess -= deduction;
-            p.total += deduction; // "Pay" the guild from bank
+            p.total += deduction;
         }
-        p.weeklyTotal = 0; // Reset
+        p.weeklyTotal = 0;
     });
 
-    // 2. Process New Data
+    // 2. Detectar jugadores que faltan en la nueva lista (Salieron del clan)
     Object.keys(updatedPlayers).forEach(key => {
         if (!manualData[key]) {
-            updatedPlayers[key].absent = true;
+            // Si el jugador estaba activo (no absent) y ahora no está en la lista:
+            if (!updatedPlayers[key].absent) {
+                updatedPlayers[key].absent = true;
+                updatedPlayers[key].isLeaving = true; // Flag para mostrar mensaje "Ya no pertenece" esta vez
+            }
         }
     });
 
+    // 3. Procesar datos manuales (Actualizar existentes y crear nuevos)
     Object.entries(manualData).forEach(([name, currentAmount]) => {
         if (!updatedPlayers[name]) {
-            // New Player
+            // NUEVO JUGADOR
             updatedPlayers[name] = {
                 name,
                 previous: currentAmount,
@@ -79,21 +96,19 @@ function App() {
                 isNew: true
             };
         } else {
-            // Existing Player
+            // JUGADOR EXISTENTE
             const p = updatedPlayers[name];
             p.absent = false;
             p.isNew = false;
+            p.isLeaving = false; // Confirmamos que sigue aquí
             
             const diff = currentAmount - p.current;
             if (diff > 0) {
-                p.previous = p.current; // Snapshot previous
+                p.previous = p.current;
                 p.current = currentAmount;
                 p.weeklyTotal += diff;
                 p.total += diff;
             } else {
-                // Should not happen unless game reset or bad input. 
-                // We trust input: if current is lower, maybe they left and came back? 
-                // For safety, we just update current.
                 p.current = currentAmount;
             }
             p.lastSeen = Date.now();
@@ -122,7 +137,7 @@ function App() {
 
   const handleResetWeekOnly = () => {
      if(!data) return;
-     if(!window.confirm("¿Reiniciar la semana sin ingresar datos? Esto calculará excesos/déficits y establecerá todas las contribuciones semanales a 0.")) return;
+     if(!window.confirm("¿Reiniciar la semana sin ingresar datos?")) return;
      
      const updatedPlayers = { ...data.players };
      const weeklyGoal = data.goalDaily * 7;
@@ -151,36 +166,72 @@ function App() {
      saveData(newData);
   };
 
+  // Manejadores de autenticación
+  const initiateAction = (action: 'manual' | 'reset') => {
+      setPendingAction(action);
+      setModalMode('auth');
+  };
+
+  const handleAuthSuccess = () => {
+      setModalMode(null); // Cerrar modal de auth
+      if (pendingAction === 'manual') {
+          // Pequeño timeout para permitir transición de modales
+          setTimeout(() => setModalMode('manual'), 100);
+      } else if (pendingAction === 'reset') {
+          handleResetWeekOnly();
+      }
+      setPendingAction(null);
+  };
+
   if (!data) return <div className="min-h-screen flex items-center justify-center text-gray-500">Cargando...</div>;
 
   return (
-    <div className="min-h-screen pb-16 relative">
-      {/* Header - Buttons Only */}
-      <div className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-center">
-          <div className="flex gap-2 overflow-x-auto w-full sm:w-auto justify-center">
-             <Button variant="primary" icon={<EditIcon />} onClick={() => setModalMode('manual')}>Ingresar Datos</Button>
-             <Button variant="secondary" icon={<SettingsIcon />} onClick={() => setModalMode('settings')}>Config</Button>
-             <Button variant="secondary" icon={<RefreshIcon />} onClick={handleResetWeekOnly}>Reiniciar</Button>
-             <Button variant="secondary" icon={<SaveIcon />} onClick={() => exportDataToJson(data)}>Exportar</Button>
-             <Button 
-                className="bg-purple-600 hover:bg-purple-700 text-white shadow-purple-200 focus:ring-purple-500" 
-                icon={<AIIcon />} 
-                onClick={() => setModalMode('ai')}
-             >
-                Análisis IA
-             </Button>
-          </div>
+    <div className="min-h-screen pb-20 relative bg-slate-50">
+      {/* Header Compacto */}
+      <div className="bg-white border-b border-gray-300 shadow-sm sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-2 py-2 relative flex justify-between items-center">
+            
+            {/* Main Controls - Ajustado para móvil */}
+            <div className="flex items-center gap-1 md:gap-3 flex-1 overflow-x-auto no-scrollbar">
+                <Button variant="primary" icon={<EditIcon />} onClick={() => initiateAction('manual')} className="px-2 md:px-5">
+                    <span className="hidden sm:inline">Ingresar</span>
+                </Button>
+                <Button variant="secondary" icon={<SettingsIcon />} onClick={() => setModalMode('settings')} className="px-2 md:px-5">
+                    <span className="hidden sm:inline">Config</span>
+                </Button>
+                <Button variant="secondary" icon={<RefreshIcon />} onClick={() => initiateAction('reset')} className="px-2 md:px-5">
+                    <span className="hidden sm:inline">Reiniciar</span>
+                </Button>
+                <Button variant="secondary" icon={<SaveIcon />} onClick={() => exportDataToJson(data)} className="px-2 md:px-5">
+                    <span className="hidden sm:inline">Exportar</span>
+                </Button>
+                <Button 
+                    className="bg-purple-600 hover:bg-purple-700 text-white shadow-purple-200 focus:ring-purple-500 px-2 md:px-5" 
+                    icon={<AIIcon />} 
+                    onClick={() => setModalMode('ai')}
+                >
+                    <span className="hidden sm:inline">IA</span>
+                </Button>
+            </div>
+
+            {/* Help Button - Siempre visible pero discreto */}
+            <button 
+                onClick={() => setModalMode('help')}
+                className="text-gray-400 hover:text-blue-600 transition-colors p-2 ml-1"
+                title="Glosario"
+            >
+                <HelpIcon />
+            </button>
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="max-w-7xl mx-auto px-1 md:px-4 lg:px-8 py-2 md:py-8 space-y-3 md:space-y-6">
         
-        {/* Legend */}
-        <div className="flex flex-wrap gap-6 justify-center text-xs font-medium text-gray-600 bg-white p-3 rounded-lg border border-gray-100 shadow-sm w-fit mx-auto">
-            <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-emerald-100 border border-emerald-300"></div> ≥90% Meta</div>
-            <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-yellow-100 border border-yellow-300"></div> 70-89% Meta</div>
-            <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-rose-100 border border-rose-300"></div> &lt;70% Meta</div>
+        {/* Legend - Super Compact */}
+        <div className="flex gap-3 justify-center text-[10px] md:text-sm font-semibold text-gray-700 bg-white py-1 px-3 rounded-full border border-gray-200 shadow-sm w-fit mx-auto">
+            <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-emerald-400"></div>≥90%</div>
+            <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-yellow-400"></div>70-89%</div>
+            <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-rose-400"></div>&lt;70%</div>
         </div>
 
         {/* Table */}
@@ -190,15 +241,15 @@ function App() {
             weekStart={data.weekStart}
         />
 
-        <div className="text-center text-xs text-gray-400">
-            Última Actualización: {new Date(data.lastUpdate).toLocaleString()}
+        <div className="text-center text-[10px] md:text-xs text-gray-400">
+            {new Date(data.lastUpdate).toLocaleString()}
         </div>
       </main>
 
       {/* Watermark */}
-      <div className="fixed bottom-4 left-0 right-0 flex justify-center pointer-events-none z-0">
-         <span className="text-lg font-bold text-gray-300 uppercase tracking-widest opacity-60">
-           Propiedad del Clan INVENCIBLES
+      <div className="fixed bottom-2 left-0 right-0 flex justify-center pointer-events-none z-0">
+         <span className="text-sm md:text-xl font-black text-slate-200 uppercase tracking-[0.2em]">
+           INVENCIBLES
          </span>
       </div>
 
@@ -206,7 +257,7 @@ function App() {
       <Modal 
         isOpen={modalMode === 'manual'} 
         onClose={() => setModalMode(null)} 
-        title="Ingresar Datos de la Semana"
+        title="Ingresar Datos"
       >
         <ManualEntry onProcess={handleStartNewWeek} onCancel={() => setModalMode(null)} />
       </Modal>
@@ -226,9 +277,28 @@ function App() {
       <Modal 
         isOpen={modalMode === 'ai'} 
         onClose={() => setModalMode(null)} 
-        title="Análisis de Rendimiento Gemini"
+        title="Análisis Gemini"
       >
         <AIAnalysis data={data} onClose={() => setModalMode(null)} />
+      </Modal>
+
+      <Modal 
+        isOpen={modalMode === 'help'} 
+        onClose={() => setModalMode(null)} 
+        title="Glosario"
+      >
+        <HelpGuide />
+      </Modal>
+
+      <Modal
+        isOpen={modalMode === 'auth'}
+        onClose={() => setModalMode(null)}
+        title="Autorización Requerida"
+      >
+        <PasswordPrompt 
+            onSuccess={handleAuthSuccess} 
+            onCancel={() => setModalMode(null)} 
+        />
       </Modal>
     </div>
   );

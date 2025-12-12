@@ -8,6 +8,7 @@ export interface Player {
   lastSeen: number;
   absent: boolean;
   isNew: boolean;
+  isLeaving?: boolean; // True only for the week they are removed
 }
 
 export interface AppData {
